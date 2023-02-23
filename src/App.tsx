@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./Components/Header/Header";
+import Nav from "./Components/Nav/Nav";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Container } from "@mui/material";
+import { Main } from "./Components/Main/Main";
+import TvSeries from "./Components/TvSeries/TvSeries";
+import Search from "./Components/Search/Search";
+import Favorites from "./Components/Favorites/Favorites";
+import Movies from "./Components/Movies/Movies";
+import { store } from "./ReduxToolkit/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Provider store={store}>
+        <div className="App">
+          <Container>
+            <Routes>
+              <Route path="/" index element={<Main />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/tvseries" element={<TvSeries />} />
+              <Route path="/movies" element={<Movies />} />
+              <Route path="/search" element={<Search />} />
+            </Routes>
+          </Container>
+        </div>
+      </Provider>
+      <Nav />
+    </BrowserRouter>
   );
 }
 

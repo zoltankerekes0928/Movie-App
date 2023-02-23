@@ -1,0 +1,13 @@
+@import '../../Style/colors.css';
+
+.header{
+  display: flex;
+  width: 100vw;
+  background-color: var(--main-bg-color);
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+  color: aliceblue;
+  gap: 1rem;
+}
+

@@ -1,0 +1,8 @@
+@import '../../Style/colors.css';
+
+.footer{
+  width: 100vw;
+  bottom: 0;
+  position: fixed;
+  background-color: var(--main-bg-color) !important;
+}
