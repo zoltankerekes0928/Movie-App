@@ -1,3 +1,6 @@
- :root{
-   --main-bg-color: rgba(3, 37, 65)
- }
+:root {
+  --main-bg-color: rgba(3, 37, 65);
+  --main-font-color: rgba(255, 255, 255);
+  --main-card-background-color: rgba(23, 39, 69);
+  --main-card-background-color-hoover: rgba(14, 28, 52);
+}
