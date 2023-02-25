@@ -19,8 +19,8 @@ export const movieSlice = createSlice({
   name: "movie",
   initialState,
   reducers: {
-    handlePageNumber: (state, action: PayloadAction<number> ) => {
-      state.pageNumber = action.payload 
+    handlePageNumber: (state, action: PayloadAction<number>) => {
+      state.pageNumber = action.payload;
     },
     decrement: (state) => {
       console.log(state);
@@ -34,13 +34,17 @@ export const movieSlice = createSlice({
       console.log("pending");
     });
     builder.addCase(fetchAsyncMovies.fulfilled, (state, { payload }) => {
-      return { ...state, movie: payload?.results.results, totalPages: payload?.totalPages };
+      return {
+        ...state,
+        movie: payload?.results.results,
+        totalPages: payload?.totalPages,
+      };
     });
     builder.addCase(fetchAsyncMovies.rejected, () => {
       console.log("rejected");
     });
   },
- });
+});
 
 export const { handlePageNumber, decrement, fetchMovies } = movieSlice.actions;
 //export const selectMovie = (state: RootState) => state.movies.movie;

@@ -8,22 +8,33 @@ import Box from "@mui/joy/Box";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 
-const CustomPagination: React.FC = () => {
+interface Props {
+  isDiscoverMovie: boolean;
+}
+
+const CustomPagination: React.FC<Props> = ({ isDiscoverMovie }) => {
   const totalPages = useAppSelector((state) => state.movies.totalPages);
+  const totalPagesNumber = isDiscoverMovie ? 500 : totalPages;
   const currentPages = useAppSelector((state) => state.movies.pageNumber);
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState<number>(currentPages);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, page: number): void => {
+  const handleChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ): void => {
     setCurrentPage(page);
     dispatch(handlePageNumber(page));
   };
 
-  const handlePageChange = (event:any): void => {
-    event <= totalPages && setCurrentPage(event);
+  const handlePageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const { value }: { value: any } = event.target;
+    value <= totalPagesNumber && setCurrentPage(value);
   };
 
-  const handleGoToClick = ():void => {
+  const handleGoToClick = (): void => {
     dispatch(handlePageNumber(currentPage));
   };
 
@@ -31,7 +42,7 @@ const CustomPagination: React.FC = () => {
     <div className="pagination">
       <div className="pagination__buttons">
         <Pagination
-          count={totalPages}
+          count={totalPagesNumber}
           onChange={handleChange}
           color="primary"
           hideNextButton
@@ -52,7 +63,7 @@ const CustomPagination: React.FC = () => {
           <Input
             type="phone"
             value={currentPage}
-            onChange={(e) => handlePageChange(e.target.value)}
+            onChange={(e) => handlePageChange(e)}
             endDecorator={
               <Button
                 variant="contained"

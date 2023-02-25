@@ -47,7 +47,7 @@ export const Main: React.FC = () => {
             />
           ))}
       </div>
-      <CustomPagination />
+      <CustomPagination isDiscoverMovie={false}/>
     </div>
   );
 };
