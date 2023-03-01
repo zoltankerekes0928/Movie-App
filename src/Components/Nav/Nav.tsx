@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -10,7 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import "./navStyle.css";
 
 const Nav: React.FC = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState<number>(0);
   const navigate = useNavigate();
 
   useEffect(() => {

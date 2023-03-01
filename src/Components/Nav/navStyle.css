@@ -1,8 +1,9 @@
-@import '../../Style/colors.css';
+@import "../../Style/colors.css";
 
-.footer{
+.footer {
   width: 100vw;
   bottom: 0;
   position: fixed;
   background-color: var(--main-bg-color) !important;
+  z-index: 9999;
 }

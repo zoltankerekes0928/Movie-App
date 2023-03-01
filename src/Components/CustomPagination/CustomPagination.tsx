@@ -14,7 +14,7 @@ interface Props {
 
 const CustomPagination: React.FC<Props> = ({ isDiscoverMovie }) => {
   const totalPages = useAppSelector((state) => state.movies.totalPages);
-  const totalPagesNumber = isDiscoverMovie ? 500 : totalPages;
+  const totalPagesNumber = totalPages;
   const currentPages = useAppSelector((state) => state.movies.pageNumber);
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState<number>(currentPages);

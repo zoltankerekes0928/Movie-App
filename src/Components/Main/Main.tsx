@@ -1,15 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../ReduxToolkit/hooks";
-import { fetchAsyncMovies } from "../../ReduxToolkit/apiCall";
+import { handleFetchMovies } from "../../ReduxToolkit/apiCall";
 import SingleComponent from "../SingleContent/SingleContent";
 import "./main.css";
 import CustomPagination from "../CustomPagination/CustomPagination";
+import { handlePageNumber } from "../../ReduxToolkit/movieSlice";
+import { Filter } from "@mui/icons-material";
 
 export const Main: React.FC = () => {
   const movies = useAppSelector((state) => state.movies.movie);
   const pages = useAppSelector((state) => state.movies.pageNumber);
-
   const dispatch = useAppDispatch();
   // const [page, setPage]=useState<number>(pages)
 
@@ -25,7 +26,7 @@ export const Main: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAsyncMovies(dataToFetch));
+    dispatch(handleFetchMovies(dataToFetch));
     window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, pages]);
@@ -33,6 +34,7 @@ export const Main: React.FC = () => {
   return (
     <div className="main">
       <h2 className="main__title">Trending Movies</h2>
+      <Filter />
       <div className="main__container">
         {movies &&
           movies.map((movie: any) => (
@@ -47,7 +49,7 @@ export const Main: React.FC = () => {
             />
           ))}
       </div>
-      <CustomPagination isDiscoverMovie={false}/>
+      <CustomPagination isDiscoverMovie={false} />
     </div>
   );
 };
